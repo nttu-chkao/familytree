@@ -1,362 +1,57 @@
 <html>
-<head >
-<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
-<META HTTP-EQUIV="Expires" CONTENT="-1">
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<title>Family Tree</title>
-<!-- I found and adapted this css code from: https://stackoverflow.com/questions/38192074/family-tree-css -->
-<!-- There is also an example on codepen.io at: http://codepen.io/Pestov/pen/BLpgm -->
-<!-- I am not sure who the original creator is -->
- 
+<head>
+<title>家族紀錄</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-* {
-margin: 0;
-padding: 0;
-font-family:sans-serif,Arial;
-font-size:10pt;
-}
-.tree {
-white-space: nowrap;
-min-width: 3584px;
-min-height:2048px;
-}
-.tree ul {
-padding-top: 20px;
-position: relative;
-transition: all 0.5s;
--webkit-transition: all 0.5s;
--moz-transition: all 0.5s;
-}
-.tree li {
-float: left;
-text-align: center;
-list-style-type: none;
-position: relative;
-padding: 20px 5px 0 5px;
-transition: all 0.5s;
--webkit-transition: all 0.5s;
--moz-transition: all 0.5s;
-}
-/*We will use ::before and ::after to draw the connectors*/
-.tree li::before, .tree li::after {
-content: '';
-position: absolute;
-top: 0;
-right: 50%;
-border-top: 1px solid #ccc;
-width: 50%;
-height: 20px;
-}
-.tree li::after {
-right: auto;
-left: 50%;
-border-left: 1px solid #ccc;
-}
-/*We need to remove left-right connectors from elements without any siblings*/
-.tree li:only-child::after, .tree li:only-child::before {
-display: none;
-}
-/*Remove space from the top of single children*/
-.tree li:only-child {
-padding-top: 0;
-}
-/*Remove left connector from first child and right connector from last child*/
-.tree li:first-child::before, .tree li:last-child::after {
-border: 0 none;
-}
-/*Adding back the vertical connector to the last nodes*/
-.tree li:last-child::before {
-border-right: 1px solid #ccc;
-border-radius: 0 5px 0 0;
--webkit-border-radius: 0 5px 0 0;
--moz-border-radius: 0 5px 0 0;
-}
-.tree li:first-child::after {
-border-radius: 5px 0 0 0;
--webkit-border-radius: 5px 0 0 0;
--moz-border-radius: 5px 0 0 0;
-}
-/*Time to add downward connectors from parents*/
-.tree ul ul::before {
-content: '';
-position: absolute;
-top: 0;
-left: 50%;
-border-left: 1px solid #ccc;
-width: 0;
-height: 20px;
-}
-.tree li div {
-border: 1px solid #ccc;
-padding: 5px 10px;
-text-decoration: none;
-color: #666;
-font-family: arial, verdana, tahoma;
-font-size: 11px;
-display: inline-block;
-min-width: 80px;
-min-height: 30px;
-border-radius: 5px;
--webkit-border-radius: 5px;
--moz-border-radius: 5px;
-transition: all 0.5s;
--webkit-transition: all 0.5s;
--moz-transition: all 0.5s;
-}
-.tree li div .male {
-background-color:lightblue;
-display: inline-block;
-width:90px;
-padding:10px;
-border-radius: 5px;
--webkit-border-radius: 5px;
--moz-border-radius: 5px;
-}
-.tree li div .female {
-background-color:lightpink;
-display: inline-block;
-width:90px;
-padding:10px;
-border-radius: 5px;
--webkit-border-radius: 5px;
--moz-border-radius: 5px;
-}
-.tree li div .spacer {
-background-color:lightblue;
-display: inline-block;
-width:10px;
-}
-/*Time for some hover effects*/
-/*We will apply the hover effect the the lineage of the element also*/
-.tree li div:hover, .tree li div:hover + ul li div {
-background: #c8e4f8;
-color: #000;
-border: 1px solid #94a0b4;
-}
-/*Connector styles on hover*/
-.tree li div:hover + ul li::after,
-.tree li div:hover + ul li::before,
-.tree li div:hover + ul::before,
-.tree li div:hover + ul ul::before {
-border-color: #94a0b4;
-}
+body {margin:0px;}
+html {scroll-behavior: smooth;}
+.nav {position:fixed; height:100%; width:400px; left:0;}
+.area {background-position: center; background-repeat: no-repeat; background-size: cover; position:relative; height:100%; opacity: 100%; margin-left: 400px}
+#sec1 {background-image: url("images/01282006.JPG");}
+#sec2 {background-image: url("images/02182007.JPG");}
+#sec3 {background-image: url("images/02072008.JPG");}
+#sec4 {background-image: url("images/02012009.jpg");}
+#sec5 {background-image: url("images/01142011.JPG");}
+#sec6 {background-image: url("images/12302011.jpg");}
+#sec7 {background-image: url("images/01282013.JPG");}
+#sec8 {background-image: url("images/11232013.jpg");}
+#sec9 {background-image: url("images/02112014.JPG");}
+#sec10 {background-image: url("images/05162015.jpg");}
+#sec11 {background-image: url("images/07012017.jpg");}
+#sec12 {background-image: url("images/12282019.jpg");}
+ul {position: absolute; list-style: none; top:20%;}
+li {margin-bottom: 20px}
 </style>
- 
 </head>
 <body>
- 
-<form id="form1">
- 
-<div class="tree" id="FamilyTreeDiv">
-
-<ul>
-
-<li>
-  <div>
-    <span class="male">高瑞雲</span><span class="spacer"></span>
-    <span class="female">高李詠</span>
-  </div>
- 
-<ul>
-
-<li>
-  <div>
-    <span class="male">高文瑞</span><span class="spacer"></span>
-    <span class="female">林氏咲</span>
-  </div>
-  
-<ul>
- 
-<li>
-  <div><span class="male">高濯纓</span><span class="spacer">
-  </span><span class="female">蔡教額</span></div>
- 
- 
-<ul>
-
-<li>
-  <div><span class="female">高玲珠</span><span class="spacer"></span>
-       <span class="male">陳憲洪</span>
-  </div>
-
-<ul>
-  <li>
-    <div>
-       <span class="male">陳玉霖</span><span class="spacer"></span>
-       <span class="female">惠美</span>
-    </div>
-  </li>
-  <li>
-    <div>
-       <span class="female">陳玉臻</span>
-    </div>
-  </li>
-</ul>
-
-</li>
- 
-<li>
-  <div><span class="male">高欽明</span><span class="spacer"></span>
-       <span class="female">蔡美錦</span>
-  </div>
-  
-<ul>
-
-  <li>
-    <div>
-       <span class="female">高美恩</span><span class="spacer"></span>
-       <span class="male">黃國彥</span>
-    </div>
-
+<div class="nav">
     <ul>
-      <li>
-        <div>
-           <span class="female">黃紹晞</span>
-        </div>
-      </li>
-      <li>
-        <div>
-           <span class="female">黃沁榆</span>
-        </div>
-      </li>
+        <li><a href="#sec1"><h3>臺中, 01/28/2006</h3></a></li>
+        <li><a href="#sec2"><h3>臺南, 02/18/2007</h3></a></li>
+        <li><a href="#sec3"><h3>臺南, 02/07/2008</h3></a></li>
+        <li><a href="#sec4"><h3>臺南, 02/01/2009</h3></a></li>        
+        <li><a href="#sec5"><h3>臺南, 01/14/2011</h3></a></li>   
+        <li><a href="#sec6"><h3>臺南, 12/30/2011</h3></a></li>               
+        <li><a href="#sec7"><h3>臺南, 01/28/2013</h3></a></li>     
+        <li><a href="#sec8"><h3>臺中, 11/23/2013</h3></a></li>                         
+        <li><a href="#sec9"><h3>屏東, 02/11/2014</h3></a></li>   
+        <li><a href="#sec10"><h3>臺南, 05/16/2015</h3></a></li>           
+        <li><a href="#sec11"><h3>臺南, 07/01/2017</h3></a></li>    
+        <li><a href="#sec12"><h3>臺南, 12/28/2019</h3></a></li>       
+        <li><a href="familytree.html"><h3>家族族譜</h3></a></li>                  
     </ul>
-  </li>
-
-  <li>
-    <div>
-       <span class="male">高嘉恩</span><span class="spacer"></span>
-       <span class="female">孫瑀絃</span>
-    </div>
-
-		<ul>
-		  <li>
-		    <div>
-		       <span class="female">高玥甯</span>
-		    </div>
-		  </li>
-		  <li>
-		    <div>
-		       <span class="male">高沐熙</span>
-		    </div>
-		  </li>
-		</ul>
-  </li>
-
-</ul>
-
-</li>
- 
- 
-<li>
-  <div><span class="male">高志誠</span><span class="spacer"></span>
-       <span class="female">蔡美瑛</span>
-  </div>
-
-<ul>
-  <li>
-    <div>
-       <span class="male">高嘉宏</span><span class="spacer"></span>
-       <span class="female">薛雅如</span>
-    </div>
-  </li>
-  <li>
-    <div>
-       <span class="female">高嘉妤</span>
-    </div>
-  </li>
-</ul>
-
-</li>
-
-<li>
-  <div><span class="female">高玲玉</span><span class="spacer"></span>
-       <span class="male">李國光</span>
-  </div>
-
-<ul>
-  <li>
-    <div>
-       <span class="female">李思佳</span><span class="spacer"></span>
-       <span class="male">陳聖弘</span>
-    </div>
-  </li>
-  <li>
-    <div>
-       <span class="female">李意婷</span>
-    </div>
-  </li>
-  <li>
-    <div>
-       <span class="female">李瑋恩</span>
-    </div>
-  </li>  
-</ul>
-
-</li>
-
-<li>
-  <div><span class="male">高世忠</span><span class="spacer"></span>
-       <span class="female">李淑娃</span>
-  </div>
-
-<ul>
-  <li>
-    <div>
-       <span class="male">高毅安</span><span class="spacer"></span>
-       <span class="female">葉司虹</span>
-    </div>
-  </li>
-  <li>
-    <div>
-       <span class="male">高毅哲</span>
-    </div>
-  </li>
-</ul>
-
-</li>
- 
-</ul>
- 
-</li>
-
-<li>
-  <div><span class="female">高素梅</span></div>
-</li>
-
-<li>
-  <div><span class="female">高阿香</span></div>
-</li>
-
-<li>
-  <div><span class="male">高宗仁</span></div>
-</li>
-
-<li>
-  <div><span class="male">高宗義</span></div>
-</li>
-
-<li>
-  <div><span class="male">高宗禮</span></div>
-</li>
-  
-</ul>
-</li>
-
-<li>
-  <div>
-    <span class="male">高清分</span>
-  </div>
-</li>
-<li>
-  <div>
-    <span class="male">高文旦</span>
-  </div>
-</li>
-</ul>
- 
 </div>
- 
-</form>
- 
+<div id="sec1" class="area"></div>
+<div id="sec2" class="area"></div>
+<div id="sec3" class="area"></div>
+<div id="sec4" class="area"></div>
+<div id="sec5" class="area"></div>
+<div id="sec6" class="area"></div>
+<div id="sec7" class="area"></div>
+<div id="sec8" class="area"></div>
+<div id="sec9" class="area"></div>
+<div id="sec10" class="area"></div>
+<div id="sec11" class="area"></div>
+<div id="sec12" class="area"></div>
 </body>
 </html>
